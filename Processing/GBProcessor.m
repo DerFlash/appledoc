@@ -176,7 +176,7 @@
 #pragma mark Common data processing
 
 - (void)processMethodsFromProvider:(GBMethodsProvider *)provider {
-	NSArray *methods = [provider.methods copy];
+	NSArray *methods = [[provider.methods copy] autorelease];
 	for (GBMethodData *method in methods) {
 		GBLogVerbose(@"Processing method %@...", method);
 		[self copyKnownDocumentationForMethod:method];
@@ -199,7 +199,7 @@
 
 
 - (void)processConstantsFromProvider:(GBEnumConstantProvider *)provider {
-	NSArray *constants = [provider.constants copy];
+	NSArray *constants = [[provider.constants copy] autorelease];
 	for (GBEnumConstantData *constant in constants) {
 		GBLogVerbose(@"Processing constant %@...", constant);
 		
@@ -397,7 +397,7 @@
 - (void)mergeKnownCategoriesFromStore {
 	GBLogInfo(@"Merging known categories to classes...");
 	if (!self.settings.mergeCategoriesToClasses) return;
-	NSSet *categories = [self.store.categories copy];
+	NSSet *categories = [[self.store.categories copy] autorelease];
 	for (GBCategoryData *category in categories) {
 		GBLogVerbose(@"Checking %@ for merging...", category);
 		

@@ -17,7 +17,7 @@
 #pragma mark Common objects creation methods
 
 + (id)realSettingsProvider {
-	GBApplicationSettingsProvider *result = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *result = [GBApplicationSettingsProvider newProvider];
 	result.projectName = @"project";
 	result.projectCompany = @"company";
 	return result;

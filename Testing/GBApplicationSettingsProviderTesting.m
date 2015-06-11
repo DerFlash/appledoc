@@ -22,7 +22,7 @@
 
 - (void)testPlaceholderReplacements_shouldReplacePlaceholderStringsInAllSupportedValues {
 	// setup
-	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider newProvider];
 	settings.projectName = @"<P N>";
 	settings.projectCompany = @"<P C>";
 	settings.projectVersion = @"<P V>";
@@ -76,7 +76,7 @@
 
 - (void)testPlaceholderReplacements_shouldReplaceDocSetFilenames {
 	// setup
-	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider newProvider];
 	settings.projectName = @"<PN>";
 	settings.projectCompany = @"<PC>";
 	settings.projectVersion = @"<PV>";
@@ -122,7 +122,7 @@
 
 - (void)testProjectIdentifier_shouldNormalizeProjectName {
 	// setup
-	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider newProvider];
 	settings.projectName = @"My Great  \t Project";
 	// execute & verify
 	assertThat(settings.projectIdentifier, is(@"My-Great-Project"));
@@ -130,7 +130,7 @@
 
 - (void)testVersionIdentifier_shouldNormalizeProjectVersion {
 	// setup
-	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider newProvider];
 	settings.projectVersion = @"1.0 beta3  \t something";
 	// execute & verify
 	assertThat(settings.versionIdentifier, is(@"1.0-beta3-something"));
@@ -140,7 +140,7 @@
 
 - (void)testHtmlReferenceNameForObject_shouldReturnProperValueForTopLevelObjects {
 	// setup
-	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider newProvider];
 	settings.outputPath = @"anything :)";
 	GBClassData *class = [GBClassData classDataWithName:@"Class"];
 	GBCategoryData *category = [GBCategoryData categoryDataWithName:@"Category" className:@"Class"];
@@ -155,7 +155,7 @@
 
 - (void)testHtmlReferenceNameForObject_shouldReturnProperValueForDocuments {
 	// setup
-	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider newProvider];
 	settings.outputPath = @"anything :)";
 	GBDocumentData *document1 = [GBDocumentData documentDataWithContents:@"c" path:@"document-template.html" basePath:@""];
 	GBDocumentData *document2 = [GBDocumentData documentDataWithContents:@"c" path:@"path/document-template.html" basePath:@""];
@@ -170,8 +170,8 @@
 
 - (void)testHtmlReferenceNameForObject_shouldReturnProperValueForMethods {
 	// setup
-	GBApplicationSettingsProvider *settings1 = [GBApplicationSettingsProvider provider];
-	GBApplicationSettingsProvider *settings2 = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings1 = [GBApplicationSettingsProvider newProvider];
+	GBApplicationSettingsProvider *settings2 = [GBApplicationSettingsProvider newProvider];
 	settings1.outputPath = @"anything :)";
 	settings2.outputPath = @"anything :)";
     settings2.htmlAnchorFormat = GBHTMLAnchorFormatApple;
@@ -196,8 +196,8 @@
 
 - (void)testHtmlReferenceForObjectFromSource_shouldReturnProperValueForClassFromIndex {
 	// setup
-	GBApplicationSettingsProvider *settings1 = [GBApplicationSettingsProvider provider];
-	GBApplicationSettingsProvider *settings2 = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings1 = [GBApplicationSettingsProvider newProvider];
+	GBApplicationSettingsProvider *settings2 = [GBApplicationSettingsProvider newProvider];
 	settings1.outputPath = @"anything :)";
 	settings2.outputPath = @"anything :)";
     settings2.htmlAnchorFormat = GBHTMLAnchorFormatApple;
@@ -213,8 +213,8 @@
 
 - (void)testHtmlReferenceForObjectFromSource_shouldReturnProperValueForCategoryFromIndex {
 	// setup
-	GBApplicationSettingsProvider *settings1 = [GBApplicationSettingsProvider provider];
-	GBApplicationSettingsProvider *settings2 = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings1 = [GBApplicationSettingsProvider newProvider];
+	GBApplicationSettingsProvider *settings2 = [GBApplicationSettingsProvider newProvider];
 	settings1.outputPath = @"anything :)";
 	settings2.outputPath = @"anything :)";
     settings2.htmlAnchorFormat = GBHTMLAnchorFormatApple;
@@ -230,8 +230,8 @@
 
 - (void)testHtmlReferenceForObjectFromSource_shouldReturnProperValueForProtocolFromIndex {
 	// setup
-	GBApplicationSettingsProvider *settings1 = [GBApplicationSettingsProvider provider];
-	GBApplicationSettingsProvider *settings2 = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings1 = [GBApplicationSettingsProvider newProvider];
+	GBApplicationSettingsProvider *settings2 = [GBApplicationSettingsProvider newProvider];
 	settings1.outputPath = @"anything :)";
 	settings2.outputPath = @"anything :)";
     settings2.htmlAnchorFormat = GBHTMLAnchorFormatApple;
@@ -247,7 +247,7 @@
 
 - (void)testHtmlReferenceForObjectFromSource_shouldReturnProperValueForDocumentFromIndex {
 	// setup
-	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider newProvider];
 	settings.outputPath = @"anything :)";
 	GBDocumentData *document1 = [GBDocumentData documentDataWithContents:@"c" path:@"document-template.html" basePath:@""];
 	GBDocumentData *document2 = [GBDocumentData documentDataWithContents:@"c" path:@"include/document-template.html" basePath:@""];
@@ -268,7 +268,7 @@
 
 - (void)testHtmlReferenceForObjectFromSource_shouldReturnProperValueForTopLevelObjectToSameObjectReference {
 	// setup
-	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider newProvider];
 	settings.outputPath = @"anything :)";
 	GBClassData *class = [GBClassData classDataWithName:@"Class"];
 	GBCategoryData *category = [GBCategoryData categoryDataWithName:@"Category" className:@"Class"];
@@ -283,7 +283,7 @@
 
 - (void)testHtmlReferenceForObjectFromSource_shouldReturnProperValueForTopLevelObjectToSameTypeTopLevelObjectReference {
 	// setup
-	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider newProvider];
 	settings.outputPath = @"anything :)";
 	GBClassData *class1 = [GBClassData classDataWithName:@"Class1"];
 	GBClassData *class2 = [GBClassData classDataWithName:@"Class2"];
@@ -306,7 +306,7 @@
 
 - (void)testHtmlReferenceForObjectFromSource_shouldReturnProperValueForTopLevelObjectToDifferentTypeOfTopLevelObjectReference {
 	// setup
-	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider newProvider];
 	settings.outputPath = @"anything :)";
 	GBClassData *class = [GBClassData classDataWithName:@"Class"];
 	GBCategoryData *category = [GBCategoryData categoryDataWithName:@"Category" className:@"Class"];
@@ -338,7 +338,7 @@
 
 - (void)testHtmlReferenceForObjectFromSource_shouldReturnProperValueForDocumentToTopLevelObjectReference {
 	// setup
-	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider newProvider];
 	settings.outputPath = @"anything :)";
 	GBClassData *class = [GBClassData classDataWithName:@"Class"];
 	GBDocumentData *document1 = [GBDocumentData documentDataWithContents:@"c" path:@"document-template.html" basePath:@""];
@@ -354,7 +354,7 @@
 
 - (void)testHtmlReferenceForObjectFromSource_shouldReturnProperValueForCustomDocumentToTopLevelObjectReference {
 	// setup
-	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider newProvider];
 	settings.outputPath = @"anything :)";
 	GBClassData *class = [GBClassData classDataWithName:@"Class"];
 	GBDocumentData *document1 = [GBDocumentData documentDataWithContents:@"c" path:@"path/document-template.html" basePath:@"path"];
@@ -370,8 +370,8 @@
 
 - (void)testHtmlReferenceForObjectFromSource_shouldReturnProperValueForTopLevelObjectToItsMemberReference {
 	// setup
-	GBApplicationSettingsProvider *settings1 = [GBApplicationSettingsProvider provider];
-	GBApplicationSettingsProvider *settings2 = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings1 = [GBApplicationSettingsProvider newProvider];
+	GBApplicationSettingsProvider *settings2 = [GBApplicationSettingsProvider newProvider];
 	settings1.outputPath = @"anything :)";
 	settings2.outputPath = @"anything :)";
     settings2.htmlAnchorFormat = GBHTMLAnchorFormatApple;
@@ -387,8 +387,8 @@
 
 - (void)testHtmlReferenceForObjectFromSource_shouldReturnProperValueForTopLevelObjectToSameTypeRemoteMemberReference {
 	// setup
-	GBApplicationSettingsProvider *settings1 = [GBApplicationSettingsProvider provider];
-	GBApplicationSettingsProvider *settings2 = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings1 = [GBApplicationSettingsProvider newProvider];
+	GBApplicationSettingsProvider *settings2 = [GBApplicationSettingsProvider newProvider];
 	settings1.outputPath = @"anything :)";
 	settings2.outputPath = @"anything :)";
     settings2.htmlAnchorFormat = GBHTMLAnchorFormatApple;
@@ -409,8 +409,8 @@
 
 - (void)testHtmlReferenceForObjectFromSource_shouldReturnProperValueForTopLevelObjectToDifferentTypeRemoteMemberReference {
 	// setup
-	GBApplicationSettingsProvider *settings1 = [GBApplicationSettingsProvider provider];
-	GBApplicationSettingsProvider *settings2 = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings1 = [GBApplicationSettingsProvider newProvider];
+	GBApplicationSettingsProvider *settings2 = [GBApplicationSettingsProvider newProvider];
 	settings1.outputPath = @"anything :)";
 	settings2.outputPath = @"anything :)";
     settings2.htmlAnchorFormat = GBHTMLAnchorFormatApple;
@@ -431,7 +431,7 @@
 
 - (void)testIsPathRepresentingTemplateFile_shouldReturnCorrectResults {
 	// setup
-	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider newProvider];
 	// execute & verify
 	assertThatBool([settings isPathRepresentingTemplateFile:@"file"], equalToBool(NO));
 	assertThatBool([settings isPathRepresentingTemplateFile:@"file.html"], equalToBool(NO));
@@ -444,7 +444,7 @@
 
 - (void)testOutputFilenameForTemplatePath_shouldReturnCorrectResults {
 	// setup
-	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider newProvider];
 	// execute & verify
 	assertThat([settings outputFilenameForTemplatePath:@"file"], is(@"file"));
 	assertThat([settings outputFilenameForTemplatePath:@"file.html"], is(@"file.html"));
@@ -457,7 +457,7 @@
 
 - (void)testTemplateFilenameForOutputPath_shuoldReturnCorrectResults {
 	// setup
-	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider newProvider];
 	// execute & verify
 	assertThat([settings templateFilenameForOutputPath:@"file"], is(@"file-template"));
 	assertThat([settings templateFilenameForOutputPath:@"file.html"], is(@"file-template.html"));
@@ -470,8 +470,8 @@
 
 - (void)testStringByEmbeddingCrossReference_shouldEmbeddCrossReferenceIfRequired {
 	// setup
-	GBApplicationSettingsProvider *settings1 = [GBApplicationSettingsProvider provider];
-	GBApplicationSettingsProvider *settings2 = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings1 = [GBApplicationSettingsProvider newProvider];
+	GBApplicationSettingsProvider *settings2 = [GBApplicationSettingsProvider newProvider];
 	settings2.embedCrossReferencesWhenProcessingMarkdown = NO;
 	// execute
 	NSString *result11 = [settings1 stringByEmbeddingCrossReference:@"[description](address \"title\")"];
@@ -489,7 +489,7 @@
 
 - (void)testStringByConvertingMarkdownToHTML_shouldConvertEmbeddedCrossReferencesInText {
 	// setup
-	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider newProvider];
 	// execute
 	NSString *result1 = [settings stringByConvertingMarkdownToHTML:@"~!@[description](address)@!~"];
 	NSString *result2 = [settings stringByConvertingMarkdownToHTML:@"[description](address)"];
@@ -500,7 +500,7 @@
 
 - (void)testStringByConvertingMarkdownToHTML_shouldAllowUsageOfUTF8CharacterSet {
 	// setup
-	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider newProvider];
 	// execute
 	NSString *result1 = [settings stringByConvertingMarkdownToHTML:@"对"];
 	// verify
@@ -509,7 +509,7 @@
 
 - (void)testStringByConvertingMarkdownToHTML_shouldConvertEmbeddedCrossReferencesInExampleBlock {
 	// setup
-	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider newProvider];
 	// execute
 	NSString *result1 = [settings stringByConvertingMarkdownToHTML:@"\t~!@[description](address)@!~"];
 	NSString *result2 = [settings stringByConvertingMarkdownToHTML:@"\t[description](address)"];
@@ -520,7 +520,7 @@
 
 - (void)testStringByConvertingMarkdownToHTML_shouldConvertAppledocStyleBoldMarkersInText {
 	// setup
-	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider newProvider];
 	// execute
 	NSString *result = [settings stringByConvertingMarkdownToHTML:@"**~!$text$!~**"];
 	// verify - Discount converts ** part, we just need to cleanup the remaining texts!
@@ -529,7 +529,7 @@
 
 - (void)testStringByConvertingMarkdownToHTML_shouldConvertAppledocStyleBoldMarkersInExampleBlock {
 	// setup
-	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider newProvider];
 	// execute
 	NSString *result1 = [settings stringByConvertingMarkdownToHTML:@"\t**~!$text$!~**"];
 	NSString *result2 = [settings stringByConvertingMarkdownToHTML:@"\t**text**"];
@@ -542,7 +542,7 @@
 
 - (void)testStringByConvertingMarkdownToText_shouldConvertEmbeddedCrossReferencesInText {
 	// setup
-	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider newProvider];
 	// execute
 	NSString *result1 = [settings stringByConvertingMarkdownToText:@"~!@[description](address)@!~"];
 	NSString *result2 = [settings stringByConvertingMarkdownToText:@"[description](address)"];
@@ -557,7 +557,7 @@
 
 - (void)testStringByConvertingMarkdownToText_shouldConvertEmbeddedCrossReferencesInExampleBlock {
 	// setup
-	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider newProvider];
 	// execute
 	NSString *result1 = [settings stringByConvertingMarkdownToText:@"\t~!@[description](address)@!~"];
 	NSString *result2 = [settings stringByConvertingMarkdownToText:@"\t[description](address)"];
@@ -572,7 +572,7 @@
 
 - (void)testStringByConvertingMarkdownToText_shouldConvertEmbeddedAppledocBoldMarkersInText {
 	// setup
-	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider newProvider];
 	// execute
 	NSString *result1 = [settings stringByConvertingMarkdownToText:@"~!$text$!~"];
 	NSString *result2 = [settings stringByConvertingMarkdownToText:@"**~!$text$!~**"];
@@ -583,7 +583,7 @@
 
 - (void)testStringByConvertingMarkdownToText_shouldConvertEmbeddedAppledocBoldMarkersInExampleBlock {
 	// setup
-	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider newProvider];
 	// execute
 	NSString *result1 = [settings stringByConvertingMarkdownToText:@"\t~!$text$!~"];
 	NSString *result2 = [settings stringByConvertingMarkdownToText:@"\t**~!$text$!~**"];
@@ -594,7 +594,7 @@
 
 - (void)testStringByConvertingMarkdownToText_shouldConvertMarkdownReferences {
 	// setup
-	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider newProvider];
 	// execute
 	NSString *result1 = [settings stringByConvertingMarkdownToText:@"simple text"];
 	NSString *result2 = [settings stringByConvertingMarkdownToText:@"[description](address)"];
@@ -611,7 +611,7 @@
 						  
 - (void)testStringByConvertingMarkdownToText_shouldConvertFormattingMarkers {
 	// setup
-	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider newProvider];
 	// execute
 	NSString *result1 = [settings stringByConvertingMarkdownToText:@"*desc*"];
 	NSString *result2 = [settings stringByConvertingMarkdownToText:@"`desc`"];
@@ -628,7 +628,7 @@
 
 - (void)testStringByConvertingMarkdownToText_shouldConvertManualAnchors {
 	// setup
-	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *settings = [GBApplicationSettingsProvider newProvider];
 	// execute
 	NSString *result1 = [settings stringByConvertingMarkdownToText:@"<a href=\"address\">desc</a>"];
 	NSString *result2 = [settings stringByConvertingMarkdownToText:@"<a href='address'>desc</a>"];

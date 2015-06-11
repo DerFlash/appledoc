@@ -61,7 +61,7 @@ NSString *NSStringFromGBPublishedFeedFormats(GBPublishedFeedFormats format);
 
 /** Returns autoreleased instance of the class.
  */
-+ (id)provider;
++ (id)newProvider;
 
 + (instancetype) sharedApplicationSettingsProvider;
 

@@ -150,9 +150,9 @@ NSData *_BVMachOSectionFromMachOHeader(char *addr, long bytes_left, char *segnam
 
 #pragma mark - Definition of private functions for error reporting
 NSError *_BVPOSIXError(NSURL *url) {
-    NSError *underlyingError = [[NSError alloc] initWithDomain:NSPOSIXErrorDomain
+    NSError *underlyingError = [[[NSError alloc] initWithDomain:NSPOSIXErrorDomain
                                                           code:errno
-                                                      userInfo:nil];
+                                                      userInfo:nil] autorelease];
     NSString *errorDescription = [NSString stringWithFormat:@"File %@ could not be opened. %s.",
                                   [url path], strerror(errno)];
     NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -160,9 +160,9 @@ NSError *_BVPOSIXError(NSURL *url) {
                               underlyingError, NSUnderlyingErrorKey,
                               [url path], NSFilePathErrorKey,
                               nil];
-    NSError *error = [[NSError alloc] initWithDomain:BVPlistExtractorErrorDomain
+    NSError *error = [[[NSError alloc] initWithDomain:BVPlistExtractorErrorDomain
                                                 code:BVPlistExtractorErrorOpenFile
-                                            userInfo:userInfo];
+                                            userInfo:userInfo] autorelease];
     
     return error;
 }
@@ -173,9 +173,9 @@ NSError *_BVGenericError(NSURL *url, NSString *fileQualifier, NSInteger errorCod
                               errorDescription, NSLocalizedDescriptionKey,
                               [url path], NSFilePathErrorKey,
                               nil];
-    NSError *error = [[NSError alloc] initWithDomain:BVPlistExtractorErrorDomain
+    NSError *error = [[[NSError alloc] initWithDomain:BVPlistExtractorErrorDomain
                                                 code:errorCode
-                                            userInfo:userInfo];
+                                            userInfo:userInfo] autorelease];
     
     return error;
 }

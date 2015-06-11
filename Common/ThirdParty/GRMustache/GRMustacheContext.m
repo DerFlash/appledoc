@@ -68,7 +68,7 @@ static NSInteger BOOLPropertyType = NSNotFound;
 	
 	NSMutableDictionary *propertyNames = [classes objectForKey:NSStringFromClass(class)];
 	if (propertyNames == nil) {
-		propertyNames = [[NSMutableDictionary dictionaryWithCapacity:4] retain];
+		propertyNames = [NSMutableDictionary dictionaryWithCapacity:4];
 		[classes setObject:propertyNames forKey:NSStringFromClass(class)];
 	}
 	
@@ -206,13 +206,15 @@ static NSInteger BOOLPropertyType = NSNotFound;
 
 - (BOOL)shouldConsiderObjectValue:(id)value forKey:(NSString *)key asBoolean:(BOOL *)outBool {
 	// C99 bool type
+    CFRetain(value);
 	if (CFBooleanGetTypeID() == CFGetTypeID(value)) {
 		if (outBool) {
 			*outBool = CFBooleanGetValue((CFBooleanRef)value);
 		}
+        CFRelease(value);
 		return YES;
 	}
-	
+
 	if (![GRMustache strictBooleanMode] && [value isKindOfClass:[NSNumber class]] && [GRMustacheProperty class:[object class] hasBOOLPropertyNamed:key]) {
 		if (outBool) {
 			*outBool = [(NSNumber *)value boolValue];

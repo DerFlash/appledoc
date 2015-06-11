@@ -335,6 +335,24 @@ static NSString *kGBArgHelp = @"help";
 		{ nil,																0,		0 },
 	};
 	NSArray *arguments = [[NSProcessInfo processInfo] arguments];
+    arguments =   @[
+                    @"--templates=./Tools/appledoc/Templates",
+                    @"--project-name=AOKLibConnectionFramework",
+                    @"--project-company=AOK Systems",
+                    @"--company-id=de.aok-systems",
+                    @"--docset-atom-filename=${company}.atom",
+					@"--docset-feed-url=${companyURL}/${company}/%DOCSETATOMFILENAME",
+					@"--docset-package-url=${companyURL}/${company}/%DOCSETPACKAGEFILENAME",
+					@"--docset-fallback-url=${companyURL}/${company}",
+                    @"--output=../AOKLibConnectionDocs",
+                    @"--finalize-docset",
+                    @"--keep-intermediate-files",
+                    @"--docset-platform-family=AOKLibConnectionFramework",
+                    @"--logformat=xcode",
+                    @"--no-repeat-first-par",
+                    @"--exit-threshold=2",
+                    @"AOKLibConnectionFramework"
+                    ];
     [self injectXcodeSettingsFromArguments:arguments];
 	[self injectGlobalSettingsFromArguments:arguments];
 	[self injectProjectSettingsFromArguments:arguments];
@@ -348,7 +366,6 @@ static NSString *kGBArgHelp = @"help";
 	[[GBConsoleLogger sharedInstance] setLogFormatter:formatter];
 	[DDLog addLogger:[GBConsoleLogger sharedInstance]];
 	[GBLog setLogLevelFromVerbose:self.verbose];
-	[formatter release];
 }
 
 - (void)deleteContentsOfOutputPath {
@@ -463,7 +480,7 @@ static NSString *kGBArgHelp = @"help";
     }
     
     //open the zip
-    DDZipReader *reader = [[DDZipReader alloc] init];
+    DDZipReader *reader = [[[DDZipReader alloc] init] autorelease];
     br = [reader openZipFile:p];
     if(!br) {
         NSLog( @"Error: extractShippedTemplatesToPath failed to open the zip at %@", p );
@@ -562,7 +579,7 @@ static NSString *kGBArgHelp = @"help";
 	self.templatesFound = NO;
 	__block NSString *path = nil;
 	[arguments enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(NSString *option, NSUInteger idx, BOOL *stop) {
-		NSString *opt = [option copy];
+		NSString *opt = [[option copy] autorelease];
 		while ([opt hasPrefix:@"-"]) opt = [opt substringFromIndex:1];
 		if ([opt isEqualToString:@"t"] || [opt isEqualToString:kGBArgTemplatesPath]) {
 			NSError *error = nil;

@@ -44,7 +44,7 @@
 	
 	// Run the AppleScript for loading the documentation into the Xcode.
 	NSDictionary* errorDict = nil;
-	NSAppleScript* script = [[NSAppleScript alloc] initWithSource:installScript];
+	NSAppleScript* script = [[[NSAppleScript alloc] initWithSource:installScript] autorelease];
 	if (![script executeAndReturnError:&errorDict])
 	{
 		NSString *message = [errorDict objectForKey:NSAppleScriptErrorMessage];

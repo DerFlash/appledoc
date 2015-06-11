@@ -146,7 +146,7 @@
 - (BOOL)processDocuments:(NSError **)error {	
 	// First process all include paths by copying them over to the destination. Note that we do it even if no template is found - if the user specified some include path, we should use it...
 	NSString *docsUserPath = [self.outputUserPath stringByAppendingPathComponent:self.settings.htmlStaticDocumentsSubpath];
-	GBTemplateFilesHandler *handler = [[GBTemplateFilesHandler alloc] init];
+	GBTemplateFilesHandler *handler = [[[GBTemplateFilesHandler alloc] init] autorelease];
 	for (NSString *path in self.settings.includePaths) {
 		GBLogInfo(@"Copying static documents from '%@'...", path);
 		NSString *lastComponent = [path lastPathComponent];

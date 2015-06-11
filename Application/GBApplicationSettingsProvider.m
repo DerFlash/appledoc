@@ -103,7 +103,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GBApplicationSettingsProvider, sharedApplicationS
 	return [NSSet setWithObjects:@"htmlExtension", @"yearDateFormatter", @"yearToDayDateFormatter", @"commentComponents", @"stringTemplates", nil];
 }
 
-+ (id)provider {
++ (id)newProvider {
 	return [[[self alloc] init] autorelease];
 }
 

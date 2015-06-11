@@ -31,14 +31,6 @@
     return [result autorelease];
 }
 
-- (void) dealloc {
-    [self.address release];
-    [self.description release];
-    [self.markdown release];
-    
-    [super dealloc];
-}
-
 - (BOOL) isInsideCrossRef:(GBCrossRefData *) outer {
     if (outer == nil) return NO;
 	return NSEqualRanges(outer.range, NSUnionRange(self.range, outer.range));

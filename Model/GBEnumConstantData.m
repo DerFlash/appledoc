@@ -11,7 +11,7 @@
 @implementation GBEnumConstantData
 +(id)constantWithName:(NSString *)name
 {
-    return [[[GBEnumConstantData alloc] initWithName:name] retain];
+    return [[[GBEnumConstantData alloc] initWithName:name] autorelease];
 }
 
 -(id)initWithName:(NSString *)name

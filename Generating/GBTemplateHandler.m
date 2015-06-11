@@ -64,7 +64,7 @@ static NSString *kGBValueKey = @"value";
 	[self clearParsedValues];
 	if ([template length] == 0) return YES;
 	NSString *regex = @"(Section\\s+(\\w+)\\s+(.*?)\\s+EndSection)";
-	NSString *clean = [template copy];
+	NSString *clean = [[template copy] autorelease];
 	while (YES) {
 		// Get all components of the regex.
 		NSRange searchRange = NSMakeRange(0, [clean length]);

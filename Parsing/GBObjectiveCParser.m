@@ -236,7 +236,7 @@
 - (void)matchAdoptedProtocolForProvider:(GBAdoptedProtocolsProvider *)provider {
 	[self.tokenizer consumeFrom:@"<" to:@">" usingBlock:^(PKToken *token, BOOL *consume, BOOL *stop) {
 		if ([token matches:@","]) return;
-		GBProtocolData *protocol = [[GBProtocolData alloc] initWithName:[token stringValue]];
+		GBProtocolData *protocol = [[[GBProtocolData alloc] initWithName:[token stringValue]] autorelease];
 		GBLogDebug(@"Matched adopted protocol %@.", protocol);
 		[provider registerProtocol:protocol];
 	}];

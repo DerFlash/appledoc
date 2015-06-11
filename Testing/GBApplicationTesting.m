@@ -580,7 +580,7 @@
 	
 	// setup the application and inject settings to it.
 	GBAppledocApplication *application = [[[GBAppledocApplication alloc] init] autorelease];
-	GBApplicationSettingsProvider *result = [GBApplicationSettingsProvider provider];
+	GBApplicationSettingsProvider *result = [GBApplicationSettingsProvider newProvider];
 	[application setValue:result forKey:@"settings"];
 	
 	// send all KVC messages for all options

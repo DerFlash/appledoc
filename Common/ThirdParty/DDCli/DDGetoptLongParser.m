@@ -162,6 +162,24 @@
 {
     NSProcessInfo * processInfo = [NSProcessInfo processInfo];
     NSArray * arguments = [processInfo arguments];
+    arguments =   @[
+                    @"--templates=./Tools/appledoc/Templates",
+                    @"--project-name=AOKLibConnectionFramework",
+                    @"--project-company=AOK Systems",
+                    @"--company-id=de.aok-systems",
+                    @"--docset-atom-filename=${company}.atom",
+					@"--docset-feed-url=${companyURL}/${company}/%DOCSETATOMFILENAME",
+					@"--docset-package-url=${companyURL}/${company}/%DOCSETPACKAGEFILENAME",
+					@"--docset-fallback-url=${companyURL}/${company}",
+                    @"--output=../AOKLibConnectionDocs",
+                    @"--finalize-docset",
+                    @"--keep-intermediate-files",
+                    @"--docset-platform-family=AOKLibConnectionFramework",
+                    @"--logformat=xcode",
+                    @"--no-repeat-first-par",
+                    @"--exit-threshold=2",
+                    @"AOKLibConnectionFramework"
+                    ];
     NSString * command = [processInfo processName];
     return [self parseOptionsWithArguments: arguments command: command];
 }

@@ -234,7 +234,7 @@
 	
 	// If last comment contains @name, we should assign it to previous one and reset current! This should ideally be handled by higher level component, but it's simplest to do it here. Note that we don't deal with source info here, we'll do immediately after this as long as we properly setup tokens.
 	if (self.settings && [self.lastCommentBuilder isMatchedByRegex:self.settings.commentComponents.methodGroupRegex]) {
-		self.previousCommentBuilder = [self.lastCommentBuilder mutableCopy];
+		self.previousCommentBuilder = [[self.lastCommentBuilder mutableCopy] autorelease];
 		[self.lastCommentBuilder setString:@""];
 		startingPreviousToken = startingLastToken;
 		startingLastToken = nil;

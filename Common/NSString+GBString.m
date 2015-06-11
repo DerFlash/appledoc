@@ -28,7 +28,7 @@
 	while ([result length] > 0 && [set characterIsMember:[result lastCharacter]]) {
 		[result deleteCharactersInRange:NSMakeRange([result length] - 1, 1)];
 	}
-	return result;
+	return [result autorelease];
 }
 
 - (NSString *)stringByWordifyingWithSpaces {
